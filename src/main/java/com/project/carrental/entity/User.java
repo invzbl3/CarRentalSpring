@@ -1,11 +1,13 @@
 package com.project.carrental.entity;
 
+import lombok.Data;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import javax.persistence.*;
 
+@Data
 @Entity
 public class User {
 
