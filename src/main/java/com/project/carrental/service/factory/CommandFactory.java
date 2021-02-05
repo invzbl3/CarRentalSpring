@@ -1,6 +1,7 @@
 package com.project.carrental.service.factory;
 
 import com.project.carrental.service.command.ICommand;
+import com.project.carrental.service.command.NoCommand;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,6 @@ public class CommandFactory {
     private final Map<String, ICommand> commands;
 
     public ICommand getCommand(String request) {
-        //...
-        return null;
+        return commands.getOrDefault(request, new NoCommand());
     }
 }
