@@ -63,13 +63,13 @@ public class CarRentalServlet extends HttpServlet {
         HttpSession session;
         if (flag) {
             session = req.getSession();
-//            session.setMaxInactiveInterval(SESSION_TIMEOUT);
             flag = false;
         } else {
             session = req.getSession(false);
         }
-        command = COMMAND_FACTORY.getCommand(req);
-        String page = command.execute(req, res, session);
+        ICommand iCommand = COMMAND_FACTORY.getCommand(command);
+
+        String page = iCommand.execute(req, res, session);
         RequestDispatcher dispatcher = getServletContext()
                 .getRequestDispatcher(page);
         dispatcher.forward(req, res);
