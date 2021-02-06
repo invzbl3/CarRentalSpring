@@ -15,6 +15,7 @@ import java.io.IOException;
 @Controller
 //@RequestMapping("/CarRental") // all request starting from / are forwarded to this class
 public class CarRentalController {
+
     @Autowired
     private AdminZoneButtonCommand adminZoneButtonCommand; //singleton object instance injected to be used/shared by all controllers
     @Autowired
@@ -48,96 +49,161 @@ public class CarRentalController {
     @Autowired
     private ReturnDamagedVehicleCommand returnDamagedVehicleCommand;
     @Autowired
+    private ReturnVehicleCommand returnVehicleCommand;
+    @Autowired
     private SelectOrderCommand selectOrderCommand;
 
-
-    public String adminZone(Model model, HttpServletRequest req, HttpServletResponse res,
-                        HttpSession session) throws ServletException, IOException {
-        return adminZoneButtonCommand.execute(req, res, session);
-    }
-
-    public String calculateCost(Model model, HttpServletRequest req, HttpServletResponse res,
-                                HttpSession session) throws ServletException, IOException {
-        return calculateCostCommand.execute(req, res, session);
-    }
-
-    public String confirmOrder(Model model, HttpServletRequest req, HttpServletResponse res,
-                                HttpSession session) throws ServletException, IOException {
-        return confirmOrderCommand.execute(req, res, session);
-    }
-
-    public String confirmPayment(Model model, HttpServletRequest req, HttpServletResponse res,
-                               HttpSession session) throws ServletException, IOException {
-        return confirmPaymentCommand.execute(req, res, session);
-    }
-
-    public String createOrder(Model model, HttpServletRequest req, HttpServletResponse res,
-                                 HttpSession session) throws ServletException, IOException {
-        return createOrderCommand.execute(req, res, session);
-    }
-
-    public String homeButton(Model model, HttpServletRequest req, HttpServletResponse res,
-                                     HttpSession session) throws ServletException, IOException {
-        return homeButtonCommand.execute(req, res, session);
-    }
-
-    public String loadOrderList(Model model, HttpServletRequest req, HttpServletResponse res,
-                             HttpSession session) throws ServletException, IOException {
-        return loadOrderListCommand.execute(req, res, session);
-    }
-
-    public String login(Model model, HttpServletRequest req, HttpServletResponse res,
-                                HttpSession session) throws ServletException, IOException {
-        return loginCommand.execute(req, res, session);
-    }
-
-    public String logout(Model model, HttpServletRequest req, HttpServletResponse res,
-                        HttpSession session) throws ServletException, IOException {
-        return logOutCommand.execute(req, res, session);
-    }
-
-    public String makeOrder(Model model, HttpServletRequest req, HttpServletResponse res,
-                         HttpSession session) throws ServletException, IOException {
-        return makeOrderButtonCommand.execute(req, res, session);
-    }
-
-    public String none(Model model, HttpServletRequest req, HttpServletResponse res,
-                            HttpSession session) throws ServletException, IOException {
-        return noCommand.execute(req, res, session);
-    }
-
-    public String register(Model model, HttpServletRequest req, HttpServletResponse res,
-                            HttpSession session) throws ServletException, IOException {
-        return registerCommand.execute(req, res, session);
-    }
-
-    public String reject(Model model, HttpServletRequest req, HttpServletResponse res,
-                           HttpSession session) throws ServletException, IOException {
-        return rejectOrderCommand.execute(req, res, session);
-    }
-
-    public String reset(Model model, HttpServletRequest req, HttpServletResponse res,
-                         HttpSession session) throws ServletException, IOException {
-        return resetOrderCommand.execute(req, res, session);
-    }
-
-    public String returnDamagedVehicle(Model model, HttpServletRequest req, HttpServletResponse res,
-                        HttpSession session) throws ServletException, IOException {
-        return returnDamagedVehicleCommand.execute(req, res, session);
-    }
-
-    public String selectOrder(Model model, HttpServletRequest req, HttpServletResponse res,
-                                       HttpSession session) throws ServletException, IOException {
-        return selectOrderCommand.execute(req, res, session);
-    }
-    
-    /*@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
-    public String processGetRequest(@RequestParam String command) { // extract parameter from the request
+    @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String processGetRequest(@RequestParam String command) throws ServletException, IOException { // extract parameter from the request
         return "index"; // return name of the jsp file to render
     }
-    @PostMapping("/post") // this method is called for POST request for /CarRental/post page
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String adminZone(@RequestParam String command,
+                            HttpServletRequest req, HttpServletResponse res,
+                            HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        adminZoneButtonCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/order" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String calculateCost(@RequestParam String command,
+                                HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        calculateCostCommand.execute(req, res, session);
+        return "order"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String confirmOrder(@RequestParam String command,
+                                HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        confirmOrderCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String confirmPayment(@RequestParam String command,
+                               HttpServletRequest req, HttpServletResponse res,
+                               HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        confirmPaymentCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/info_order" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String createOrder(@RequestParam String command,
+                                 HttpServletRequest req, HttpServletResponse res,
+                                 HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        createOrderCommand.execute(req, res, session);
+        return "info_order"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String giveVehicle(@RequestParam String command,
+                              HttpServletRequest req, HttpServletResponse res,
+                              HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        giveVehicleCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/index" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String homeButton(@RequestParam String command,
+                              HttpServletRequest req, HttpServletResponse res,
+                              HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        homeButtonCommand.execute(req, res, session);
+        return "index"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String loadOrderList(@RequestParam String command,
+                             HttpServletRequest req, HttpServletResponse res,
+                             HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        loadOrderListCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/index" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String logIn(@RequestParam String command,
+                                HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        loginCommand.execute(req, res, session);
+        return "index"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/index" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String logOut(@RequestParam String command,
+                        HttpServletRequest req, HttpServletResponse res,
+                        HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        logOutCommand.execute(req, res, session);
+        return "index"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/order" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String makeOrderButton(@RequestParam String command,
+                         HttpServletRequest req, HttpServletResponse res,
+                         HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        makeOrderButtonCommand.execute(req, res, session);
+        return "order"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/index" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String noCommand(@RequestParam String command,
+                                  HttpServletRequest req, HttpServletResponse res,
+                                  HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        noCommand.execute(req, res, session);
+        return "index"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/info_registration" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String registerCommand(@RequestParam String command,
+                            HttpServletRequest req, HttpServletResponse res,
+                            HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        registerCommand.execute(req, res, session);
+        return "info_registration"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String rejectOrder(@RequestParam String command,
+                                  HttpServletRequest req, HttpServletResponse res,
+                                  HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        rejectOrderCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String resetOrder(@RequestParam String command,
+                              HttpServletRequest req, HttpServletResponse res,
+                              HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        resetOrderCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String returnDamagedVehicle(@RequestParam String command,
+                             HttpServletRequest req, HttpServletResponse res,
+                             HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        returnDamagedVehicleCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String returnVehicle(@RequestParam String command,
+                                       HttpServletRequest req, HttpServletResponse res,
+                                       HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        returnVehicleCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    @RequestMapping(value = { "/admin" }, method = RequestMethod.GET) //this method is called for GET request for /CarRental page
+    public String selectOrder(@RequestParam String command,
+                                HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException { // extract parameter from the request
+        selectOrderCommand.execute(req, res, session);
+        return "admin"; // return name of the jsp file to render
+    }
+
+    /*@PostMapping("/post") // this method is called for POST request for /CarRental/post page
     public String processPostRequest() {
         return "post"; // would render post.jsp page
     }*/
-
 }
