@@ -13,7 +13,7 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vehicle_id", updatable=false, nullable=false)
-    private int vehicleID;
+    private Integer vehicleID;
 
     @Column(name = "make", length=50, nullable=false)
     private String make;
@@ -22,13 +22,13 @@ public class Vehicle {
     private String model;
 
     @Column(name = "autoGearbox", nullable=false)
-    private boolean autoGearbox;
+    private Boolean autoGearbox;
 
     @Column(name = "air_conditioner", nullable=false)
-    private boolean airConditioner;
+    private Boolean airConditioner;
 
     @Column(name = "seats", nullable=false)
-    private int seats;
+    private Boolean seats;
 
     @Column(name = "daily_price", nullable=false)
     private BigDecimal dailyPrice;
