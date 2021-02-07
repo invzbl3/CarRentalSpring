@@ -2,8 +2,8 @@ package com.project.carrental.repository;
 
 import com.project.carrental.entity.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
+import java.math.BigDecimal;
 
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
-    // findDailyPriceByVehicleID
+     public BigDecimal findByVehicleID(int vehicleID);
 }
