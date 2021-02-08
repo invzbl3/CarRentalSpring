@@ -9,6 +9,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     /*@Query("select v.dailyPrice from Vehicle v where v.vehicleID =: vehicleID")
     BigDecimal getDailyPriceByVehicleID(Integer vehicleID);*/
-    @Query("select v from Vehicle v where v.vehicleID =: id")
+    @Query("select v from Vehicle v where v.vehicleID =:id")
     Vehicle getDailyPriceByVehicleID(Integer vehicleID);
 }
