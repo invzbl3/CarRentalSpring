@@ -15,7 +15,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id", updatable = false, nullable = false)
-    private int orderID;
+    private Integer orderID;
 
     @Column(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
@@ -36,22 +36,22 @@ public class Order {
     private BigDecimal rentCost;
 
     @Column(name = "processed", nullable = false)
-    private boolean processed;
+    private Boolean processed;
 
     @Column(name = "rejected", nullable = false)
-    private boolean rejected;
+    private Boolean rejected;
 
     @Column(name = "reject_desc")
     private String rejectDesc;
 
     @Column(name = "picked", nullable = false)
-    private boolean picked;
+    private Boolean picked;
 
     @Column(name = "returned", nullable = false)
-    private boolean returned;
+    private Boolean returned;
 
     @Column(name = "damaged", nullable = false)
-    private boolean damaged;
+    private Boolean damaged;
 
     @Column(name = "damage_desc")
     private String damageDesc;
@@ -60,16 +60,16 @@ public class Order {
     private BigDecimal damageCost;
 
     @Column(name = "paid", nullable = false)
-    private boolean paid;
+    private Boolean paid;
 
     public Order() {
     }
 
-    public Order(int orderID, Vehicle vehicle, User user, Passport passport,
+    public Order(Integer orderID, Vehicle vehicle, User user, Passport passport,
                  Timestamp pickUpDate, Timestamp dropOffDate, BigDecimal rentCost,
-                 boolean processed, boolean rejected, String rejectDesc,
-                 boolean picked, boolean returned, boolean damaged,
-                 String damageDesc, BigDecimal damageCost, boolean paid) {
+                 Boolean processed, Boolean rejected, String rejectDesc,
+                 Boolean picked, Boolean returned, Boolean damaged,
+                 String damageDesc, BigDecimal damageCost, Boolean paid) {
         this.orderID = orderID;
         this.vehicle = vehicle;
         this.user = user;

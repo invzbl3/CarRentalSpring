@@ -15,7 +15,7 @@ public class Passport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passport_id", updatable = false, nullable = false)
-    private int passportID;
+    private Integer passportID;
 
     @Column(name = "last_name", length=50, nullable = false)
     private String lastName;
@@ -44,7 +44,7 @@ public class Passport {
     public Passport() {
     }
 
-    public Passport(int passportID, String lastName, String firstName,
+    public Passport(Integer passportID, String lastName, String firstName,
                     String patronymic, Date birthday, String passportSeries,
                     String passportNumber, String whoIssued, Date whenIssued) {
         this.passportID = passportID;

@@ -1,13 +1,13 @@
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
-import com.project.carrental.dao.idao.IVehicleDao;
 import com.project.carrental.exception.SessionTimeoutException;
-import com.project.carrental.dao.daofactory.DaoFactory;
+import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.util.CommandHelper;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +24,8 @@ import java.sql.Timestamp;
  */
 @Service("calculateCost")
 public class CalculateCostCommand implements ICommand {
+    @Autowired
+    VehicleRepository vehicleRepository;
 
     public static final Logger LOGGER = Logger.getLogger(CalculateCostCommand.class);
 
@@ -45,9 +47,11 @@ public class CalculateCostCommand implements ICommand {
             req.setAttribute(REQ_PARAM_PICK_UP_DATE, tmpPick);
             req.setAttribute(REQ_PARAM_DROP_OFF_DATE, tmpDrop);
 
-            IVehicleDao vehicleDAO = DaoFactory.getVehicleDAO();
+            //IVehicleDao vehicleDAO = DaoFactory.getVehicleDAO();
             int rentInterval = daysBetween(pick, drop);
-            BigDecimal dailyPrice = vehicleDAO.findDailyPriceByVehicleID(vehicleID);
+            //BigDecimal dailyPrice = vehicleDAO.findDailyPriceByVehicleID(vehicleID);
+            //BigDecimal dailyPrice = vehicleRepository.getDailyPriceByVehicleID(vehicleID);
+            BigDecimal dailyPrice = vehicleRepository.getOne(vehicleID).getDailyPrice();
             BigDecimal rentCost = calcRentCost(dailyPrice, rentInterval);
             req.setAttribute(REQ_PARAM_RENT_COST, rentCost);
 

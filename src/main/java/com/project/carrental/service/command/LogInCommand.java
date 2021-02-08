@@ -1,10 +1,10 @@
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
-import com.project.carrental.dao.daofactory.DaoFactory;
-import com.project.carrental.dao.idao.IUserDao;
 import com.project.carrental.entity.User;
+import com.project.carrental.repository.UserRepository;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +19,9 @@ import java.io.IOException;
 @Service("login")
 public class LogInCommand implements ICommand {
 
+    @Autowired
+    UserRepository userRepository;
+
     public static final Logger LOGGER = Logger.getLogger(LogInCommand.class);
 
     private static final int LOGIN_ERROR = -1;
@@ -31,7 +34,7 @@ public class LogInCommand implements ICommand {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
 
         //get DAO and input data
-        IUserDao userDAO = DaoFactory.getUserDAO();
+        //IUserDao userDAO = DaoFactory.getUserDAO();
         String login = req.getParameter(REQ_PARAM_LOGIN);
         String password = req.getParameter(REQ_PARAM_PASSWORD);
 
@@ -45,7 +48,8 @@ public class LogInCommand implements ICommand {
             case ACC_TYPE_CLIENT:
                 session.setAttribute(SESS_PARAM_USER_NAME, login);
                 session.setAttribute(SESS_PARAM_USERTYPE_ID, ACC_TYPE_CLIENT);
-                user = userDAO.findByLogin(login);
+                //user = userDAO.findByLogin(login);
+                user = userRepository.findByLogin(login);
                 userID = user.getUserID();
                 session.setAttribute(SESS_PARAM_USER_ID, userID);
                 page = ConfigManager.getInstance()
@@ -55,7 +59,8 @@ public class LogInCommand implements ICommand {
             case ACC_TYPE_ADMIN:
                 session.setAttribute(SESS_PARAM_USER_NAME, login);
                 session.setAttribute(SESS_PARAM_USERTYPE_ID, ACC_TYPE_ADMIN);
-                user = userDAO.findByLogin(login);
+                //user = userDAO.findByLogin(login);
+                user = userRepository.findByLogin(login);
                 userID = user.getUserID();
                 session.setAttribute(SESS_PARAM_USER_ID, userID);
                 page = ConfigManager.getInstance()
@@ -78,8 +83,9 @@ public class LogInCommand implements ICommand {
     //auxiliary method for checking the login and password correspondence
     private int checkLogin(String login, String password) {
         LOGGER.debug("checkLogin called");
-        IUserDao userDAO = DaoFactory.getUserDAO();
-        User user = userDAO.findByLogin(login);
+        //IUserDao userDAO = DaoFactory.getUserDAO();
+        //User user = userDAO.findByLogin(login);
+        User user = userRepository.findByLogin(login);
         if ((user == null) || !(user.getPassword().equals(password))) {
             return LOGIN_ERROR;
         } else {

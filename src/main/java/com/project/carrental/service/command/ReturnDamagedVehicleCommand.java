@@ -1,13 +1,12 @@
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
-import com.project.carrental.dao.DaoHelper;
-import com.project.carrental.dao.daofactory.DaoFactory;
-import com.project.carrental.dao.idao.IOrderDao;
 import com.project.carrental.entity.Order;
 import com.project.carrental.exception.SessionTimeoutException;
+import com.project.carrental.repository.OrderRepository;
 import com.project.carrental.util.CommandHelper;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +23,9 @@ import java.math.BigDecimal;
 @Service("returnDamagedVehicle")
 public class ReturnDamagedVehicleCommand implements ICommand {
 
+    @Autowired
+    OrderRepository orderRepository;
+
     public static final Logger LOGGER = Logger.getLogger(ReturnDamagedVehicleCommand.class);
 
     @Override
@@ -38,8 +40,10 @@ public class ReturnDamagedVehicleCommand implements ICommand {
             System.out.println(req.getParameter(REQ_PARAM_DAMAGE_DESC));
             System.out.println(req.getParameter(REQ_PARAM_DAMAGE_COST));
 
-            IOrderDao orderDAO = DaoFactory.getOrderDAO();
-            Order order = orderDAO.findByID(Integer.parseInt(req.
+            //IOrderDao orderDAO = DaoFactory.getOrderDAO();
+            /*Order order = orderDAO.findByID(Integer.parseInt(req.
+                    getParameter(REQ_PARAM_ORDER_ID)));*/
+            Order order = orderRepository.getOne(Integer.parseInt(req.
                     getParameter(REQ_PARAM_ORDER_ID)));
             order.setReturned(true);
             order.setDamaged(true);
@@ -47,10 +51,10 @@ public class ReturnDamagedVehicleCommand implements ICommand {
             BigDecimal damageCost = BigDecimal.valueOf(Double
                     .parseDouble(req.getParameter(REQ_PARAM_DAMAGE_COST)));
             order.setDamageCost(damageCost);
-            int updateOrderCode = orderDAO.update(order);
+            /*int updateOrderCode = orderDAO.update(order);
             if (updateOrderCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
                 throw new IllegalArgumentException("Order entry in DB was not updated");
-            }
+            }*/
 
             page = ConfigManager.getInstance()
                     .getProperty(ConfigManager.ADMIN_PAGE_PATH);

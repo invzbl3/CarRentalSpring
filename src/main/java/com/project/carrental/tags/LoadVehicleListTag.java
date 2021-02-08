@@ -1,10 +1,9 @@
 package com.project.carrental.tags;
 
-import com.project.carrental.dao.daofactory.DaoFactory;
-import com.project.carrental.dao.idao.IVehicleDao;
 import com.project.carrental.entity.Vehicle;
+import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.service.command.ICommand;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -16,6 +15,9 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class LoadVehicleListTag extends TagSupport {
 
+    @Autowired
+    VehicleRepository vehicleRepository;
+
     /**
      * Loads vehicle list from database to JSP.
      *
@@ -24,8 +26,9 @@ public class LoadVehicleListTag extends TagSupport {
      */
     @Override
     public int doStartTag() throws JspException {
-        IVehicleDao vehicleDAO = DaoFactory.getVehicleDAO();
-        List<Vehicle> vehicleList = vehicleDAO.findAll();
+        //IVehicleDao vehicleDAO = DaoFactory.getVehicleDAO();
+        //List<Vehicle> vehicleList = vehicleDAO.findAll();
+        List<Vehicle> vehicleList = vehicleRepository.findAll();
         pageContext.setAttribute(ICommand.REQ_PARAM_VEHICLE_LIST, vehicleList);
         return SKIP_BODY;
     }

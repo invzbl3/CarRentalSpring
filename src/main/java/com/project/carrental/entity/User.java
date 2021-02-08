@@ -14,10 +14,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", updatable=false, nullable=false)
-    private int userID;
+    private Integer userID;
 
     @Column(name = "usertype_id", nullable=false)
-    private int userTypeID;
+    private Integer userTypeID;
 
     @Column(name = "login", length=50, nullable=false)
     private String login;
@@ -28,7 +28,7 @@ public class User {
     public User() {
     }
 
-    public User(int userID, int userTypeID, String login, String password) {
+    public User(Integer userID, Integer userTypeID, String login, String password) {
         this.userID = userID;
         this.userTypeID = userTypeID;
         this.login = login;

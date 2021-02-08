@@ -1,18 +1,20 @@
 package com.project.carrental.entity;
 
+import lombok.Data;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import javax.persistence.*;
 
+@Data
 @Entity
 public class UserType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usertype_id", updatable=false, nullable=false)
-    private int usertypeID;
+    private Integer usertypeID;
 
     @Column(name = "usertype", length=50, nullable=false)
     private String usertype;
@@ -20,7 +22,7 @@ public class UserType {
     public UserType() {
     }
 
-    public UserType(int usertypeID, String usertype) {
+    public UserType(Integer usertypeID, String usertype) {
         this.usertypeID = usertypeID;
         this.usertype = usertype;
     }

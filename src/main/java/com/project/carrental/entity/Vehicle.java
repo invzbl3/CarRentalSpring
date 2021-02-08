@@ -1,5 +1,6 @@
 package com.project.carrental.entity;
 
+import lombok.Data;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -7,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Data
 @Entity
 public class Vehicle {
 
@@ -28,7 +30,7 @@ public class Vehicle {
     private Boolean airConditioner;
 
     @Column(name = "seats", nullable=false)
-    private Boolean seats;
+    private Integer seats;
 
     @Column(name = "daily_price", nullable=false)
     private BigDecimal dailyPrice;
@@ -36,9 +38,9 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(int vehicleID, String make, String model,
-                   boolean autoGearbox, boolean airConditioner,
-                   int seats, BigDecimal dailyPrice) {
+    public Vehicle(Integer vehicleID, String make, String model,
+                   Boolean autoGearbox, Boolean airConditioner,
+                   Integer seats, BigDecimal dailyPrice) {
         this.vehicleID = vehicleID;
         this.make = make;
         this.model = model;
