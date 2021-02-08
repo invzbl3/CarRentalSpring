@@ -36,6 +36,7 @@ public class RejectOrderCommand implements ICommand {
             //IOrderDao orderDAO = DaoFactory.getOrderDAO();
             /*Order order = orderDAO.findByID(Integer.parseInt(req.
                     getParameter(REQ_PARAM_ORDER_ID)));*/
+
             Order order = orderRepository.getOne(Integer.parseInt(req.
                     getParameter(REQ_PARAM_ORDER_ID)));
             order.setProcessed(true);
@@ -45,6 +46,12 @@ public class RejectOrderCommand implements ICommand {
             if (updateOrderCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
                 throw new IllegalArgumentException("Order entry in DB was not updated");
             }*/
+
+            try {
+                orderRepository.save(order);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
 
             page = ConfigManager.getInstance()
                     .getProperty(ConfigManager.ADMIN_PAGE_PATH);

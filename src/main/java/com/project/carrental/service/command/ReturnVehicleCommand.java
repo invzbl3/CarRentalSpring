@@ -39,6 +39,12 @@ public class ReturnVehicleCommand implements ICommand {
                 throw new IllegalArgumentException("Order entry in DB was not updated");
             }*/
 
+            try {
+                orderRepository.save(order);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
             page = ConfigManager.getInstance()
                     .getProperty(ConfigManager.ADMIN_PAGE_PATH);
         } catch (SessionTimeoutException e) {

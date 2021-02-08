@@ -71,6 +71,12 @@ public class CreateOrderCommand implements ICommand {
                 passport.setPassportID(passportID);
             }*/
 
+            try {
+                passportRepository.save(passport);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
             //create and insert new order
             Order order = new Order();
             int vehicleID = Integer.parseInt(req.getParameter(REQ_PARAM_VEHICLE_ID));
@@ -94,6 +100,12 @@ public class CreateOrderCommand implements ICommand {
             if (insertOrderCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
                 throw new IllegalArgumentException("Order entry in DB was not created");
             }*/
+
+            try {
+                orderRepository.save(order);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
 
             page = ConfigManager.getInstance()
                     .getProperty(ConfigManager.INFO_ORDER_PAGE_PATH);

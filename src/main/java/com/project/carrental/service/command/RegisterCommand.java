@@ -41,10 +41,18 @@ public class RegisterCommand implements ICommand {
                     user.setUserTypeID(LogInCommand.ACC_TYPE_CLIENT);
                     user.setLogin(login);
                     user.setPassword(password);
+
                     /*int insertUserCode = userDAO.insert(user);
                     if (insertUserCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
                         throw new IllegalArgumentException("Registration failed. Entry was not created");
                     }*/
+
+                    try {
+                        userRepository.save(user);
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    }
+
                     LOGGER.info(user + " registered successfully");
                     page = ConfigManager.getInstance()
                             .getProperty(ConfigManager.INFO_REG_PAGE_PATH);
