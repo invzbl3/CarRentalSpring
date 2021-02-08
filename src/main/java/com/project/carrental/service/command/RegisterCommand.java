@@ -5,6 +5,7 @@ import com.project.carrental.entity.User;
 import com.project.carrental.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +50,8 @@ public class RegisterCommand implements ICommand {
 
                     try {
                         userRepository.save(user);
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
+                    } catch (DataAccessException e) {
+                        throw new IllegalArgumentException("Registration failed. Entry was not created");
                     }
 
                     LOGGER.info(user + " registered successfully");

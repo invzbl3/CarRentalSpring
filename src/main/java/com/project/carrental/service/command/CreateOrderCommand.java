@@ -13,6 +13,7 @@ import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.util.CommandHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -73,8 +74,8 @@ public class CreateOrderCommand implements ICommand {
 
             try {
                 passportRepository.save(passport);
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+            } catch (DataAccessException e) {
+                throw new IllegalArgumentException("Passport entry in DB was not created");
             }
 
             //create and insert new order

@@ -17,13 +17,16 @@ public class Order {
     @Column(name = "order_id", updatable = false, nullable = false)
     private Integer orderID;
 
-    @Column(name = "vehicle_id", nullable = false)
+    @OneToOne
+    //@Column(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
-    @Column(name = "user_id", nullable = false)
+    @OneToOne
+    //@Column(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "passport_id", nullable = false)
+    @OneToOne
+    //@Column(name = "passport_id", nullable = false)
     private Passport passport;
 
     @Column(name = "pick_up_date", nullable = false)
