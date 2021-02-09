@@ -21,9 +21,4 @@ public class CarRentalController {
                             HttpSession session) throws ServletException, IOException { // extract parameter from the request
         return commandFactory.getCommand(command).execute(req, res, session); // return name of the jsp file to render
     }
-
-    /*@GetMapping("/")
-    public String indexPage() {
-        return "index";
-    }*/
 }
