@@ -7,6 +7,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.HashMap;
@@ -19,11 +21,8 @@ public class CarRentalSpringApplication extends SpringBootServletInitializer {
         SpringApplication.run(CarRentalSpringApplication.class, args);
     }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        final InternalResourceViewResolver r = new InternalResourceViewResolver();
-        r.setPrefix("/WEB-INF/jsp/");
-        r.setSuffix(".jsp");
-        return r;
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(CarRentalSpringApplication.class);
     }
 }

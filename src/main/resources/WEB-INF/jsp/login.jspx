@@ -19,11 +19,11 @@
             <!--<link rel="stylesheet" type="text/css" href="styles/carrentalstyles.css" />-->
 
             <!-- Core CSS - Include with every page -->
-            <link href="css/bootstrap.min.css" rel="stylesheet"/>
-            <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+            <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+            <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet"/>
 
             <!-- SB Admin CSS - Include with every page -->
-            <link href="css/sb-admin.css" rel="stylesheet"/>
+            <link href="../../css/sb-admin.css" rel="stylesheet"/>
 
             <title><fmt:message key="registration.title" /></title>
         </head>
@@ -60,12 +60,12 @@
             </div>
 
             <!-- Core Scripts - Include with every page -->
-            <script src="js/jquery-1.10.2.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+            <script src="../../js/jquery-1.10.2.js"></script>
+            <script src="../../js/bootstrap.min.js"></script>
+            <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
             <!-- SB Admin Scripts - Include with every page -->
-            <script src="js/sb-admin.js"></script>
+            <script src="../../js/sb-admin.js"></script>
 
         </body>
     </html>
