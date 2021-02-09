@@ -21,15 +21,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+        http.authorizeRequests().
+                antMatchers("/index", "/user","/").permitAll()
+                .antMatchers("/admin").authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login.jspx")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/index.jsp", true);
     }
 
-    @Bean
+    /*@Bean
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
-    }
+    }*/
 }
