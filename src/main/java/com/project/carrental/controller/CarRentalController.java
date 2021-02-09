@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/")
 public class CarRentalController {
     @Autowired
     private CommandFactory commandFactory; //singleton object instance injected to be used/shared by all controllers
@@ -23,8 +22,8 @@ public class CarRentalController {
         return commandFactory.getCommand(command).execute(req, res, session); // return name of the jsp file to render
     }
 
-    @GetMapping
+    /*@GetMapping("/")
     public String indexPage() {
         return "index";
-    }
+    }*/
 }
