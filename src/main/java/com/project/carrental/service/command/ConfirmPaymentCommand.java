@@ -20,7 +20,7 @@ import java.io.IOException;
  * been received.
  *
  */
-@Service("confirmPayment")
+@Service
 public class ConfirmPaymentCommand implements ICommand {
 
     @Autowired

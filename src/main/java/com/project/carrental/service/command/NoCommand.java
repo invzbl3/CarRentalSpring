@@ -14,7 +14,7 @@ import java.io.IOException;
  * page.
  *
  */
-@Service("index")
+@Service
 public class NoCommand implements ICommand {
 
     public static final Logger LOGGER = Logger.getLogger(NoCommand.class);

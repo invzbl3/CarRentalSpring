@@ -15,7 +15,7 @@ import java.io.IOException;
  * Class that represents command to forward user to page with order form.
  *
  */
-@Service("makeOrderButton")
+@Service
 public class MakeOrderButtonCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(MakeOrderButtonCommand.class);
 

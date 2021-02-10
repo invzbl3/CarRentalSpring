@@ -83,7 +83,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="registration.jspx">
+                                    <a href="registration">
                                         <i class="fa fa-plus fa-fw"></i>
                                         <fmt:message key="header.button.registration" />
                                     </a>

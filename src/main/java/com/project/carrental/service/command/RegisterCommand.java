@@ -17,7 +17,7 @@ import java.io.IOException;
  * Class that represents command to register new user.
  *
  */
-@Service("register")
+@Service
 public class RegisterCommand implements ICommand {
     @Autowired
     UserRepository userRepository;

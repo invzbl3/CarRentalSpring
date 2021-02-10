@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@Service("returnVehicle")
+@Service
 public class ReturnVehicleCommand implements ICommand {
     @Autowired
     OrderRepository orderRepository;

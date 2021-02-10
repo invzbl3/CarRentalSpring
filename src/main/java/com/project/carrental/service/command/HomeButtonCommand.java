@@ -16,7 +16,7 @@ import java.io.IOException;
  * Class that represents command to forward user to index page.
  *
  */
-@Service("homeButton")
+@Service
 public class HomeButtonCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(HomeButtonCommand.class);
 

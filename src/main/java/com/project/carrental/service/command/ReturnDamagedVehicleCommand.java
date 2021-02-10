@@ -21,7 +21,7 @@ import java.math.BigDecimal;
  * returned vehicle was damaged.
  *
  */
-@Service("returnDamagedVehicle")
+@Service
 public class ReturnDamagedVehicleCommand implements ICommand {
 
     @Autowired

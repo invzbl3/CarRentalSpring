@@ -15,7 +15,7 @@ import java.io.IOException;
  * Class that represents command to forward user to admin page.
  *
  */
-@Service("adminZoneButton")
+@Service
 public class AdminZoneButtonCommand implements ICommand {
 
     public static final Logger LOGGER = Logger.getLogger(AdminZoneButtonCommand.class);

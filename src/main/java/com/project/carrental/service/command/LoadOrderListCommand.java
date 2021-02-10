@@ -16,7 +16,7 @@ import java.io.IOException;
  * Class that represents command to refresh data about orders on the admin page.
  *
  */
-@Service("loadOrderListCommand")
+@Service
 public class LoadOrderListCommand implements ICommand {
 
     public static final Logger LOGGER = Logger.getLogger(LoadOrderListCommand.class);

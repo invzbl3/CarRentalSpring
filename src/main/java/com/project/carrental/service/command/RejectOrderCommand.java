@@ -20,7 +20,7 @@ import java.io.IOException;
  * rejected.
  *
  */
-@Service("reject")
+@Service
 public class RejectOrderCommand implements ICommand {
     @Autowired
     OrderRepository orderRepository;

@@ -22,7 +22,7 @@ import java.sql.Timestamp;
  * vehicle and dates.
  *
  */
-@Service("calculateCost")
+@Service
 public class CalculateCostCommand implements ICommand {
     @Autowired
     VehicleRepository vehicleRepository;

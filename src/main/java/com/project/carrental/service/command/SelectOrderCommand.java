@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@Service("selectOrder")
+@Service
 public class SelectOrderCommand implements ICommand {
 
     public static final Logger LOGGER = Logger.getLogger(SelectOrderCommand.class);

@@ -19,7 +19,7 @@ import java.io.IOException;
  * Class that represents command to confirm the order by manager.
  *
  */
-@Service("confirmOrder")
+@Service
 public class ConfirmOrderCommand implements ICommand {
 
     @Autowired

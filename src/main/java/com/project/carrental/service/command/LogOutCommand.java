@@ -13,7 +13,7 @@ import java.io.IOException;
  * Class that represents command to log out.
  *
  */
-@Service("logout")
+@Service
 public class LogOutCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(LogOutCommand.class);
 

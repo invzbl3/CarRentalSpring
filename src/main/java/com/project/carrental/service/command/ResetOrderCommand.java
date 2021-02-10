@@ -20,7 +20,7 @@ import java.io.IOException;
  * manager's processing.
  *
  */
-@Service("reset")
+@Service
 public class ResetOrderCommand implements ICommand {
     @Autowired
     OrderRepository orderRepository;

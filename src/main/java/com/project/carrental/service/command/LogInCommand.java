@@ -16,7 +16,7 @@ import java.io.IOException;
  * Class that represents command to log in.
  *
  */
-@Service("login")
+@Service
 public class LogInCommand implements ICommand {
 
     @Autowired

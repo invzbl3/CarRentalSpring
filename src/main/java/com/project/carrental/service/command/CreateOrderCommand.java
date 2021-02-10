@@ -28,7 +28,7 @@ import java.sql.Timestamp;
  * Class that represents command to add information about new order to database.
  *
  */
-@Service("createOrder")
+@Service
 public class CreateOrderCommand implements ICommand {
     @Autowired
     PassportRepository passportRepository;

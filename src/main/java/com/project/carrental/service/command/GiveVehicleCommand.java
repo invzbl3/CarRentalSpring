@@ -20,7 +20,7 @@ import java.io.IOException;
  * up.
  *
  */
-@Service("giveVehicle")
+@Service
 public class GiveVehicleCommand implements ICommand {
 
     @Autowired
