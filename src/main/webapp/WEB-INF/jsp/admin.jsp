@@ -100,7 +100,7 @@
                                 <li>
 
                                     <form name="logoutForm" method="POST" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="logout"/>
+                                        <input type="hidden" name="command" value="logOutCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
                                             <i class="fa fa-sign-out fa-fw"></i>
@@ -122,7 +122,7 @@
                             <c:if test="${!empty sessionScope.userName}">
                                 <li>
                                     <form name="makeOrderButton" method="post" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="makeOrderButton"/>
+                                        <input type="hidden" name="command" value="makeOrderButtonCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
                                             <i class="fa fa-shopping-cart fa-fw"></i>
@@ -133,7 +133,7 @@
                                 <c:if test="${sessionScope.userTypeID == 1}">
                                     <li>
                                         <form name="adminZoneButton" method="post" action="CarRentalServlet">
-                                            <input type="hidden" name="command" value="adminZoneButton"/>
+                                            <input type="hidden" name="command" value="adminZoneButtonCommand"/>
                                             <a href="" onclick="parentNode.submit();
                                                     return false;">
                                                 <i class="fa fa-wrench fa-fw"></i>
@@ -168,7 +168,7 @@
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <form name="selectOrder" method="post" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="selectOrder" />
+                                        <input type="hidden" name="command" value="selectOrderCommand" />
                                         <fmt:message key="admin.button.selectOrder" var="selectOrderButtonValue" />
                                         <button type="submit" class="btn btn-outline btn-info btn-lg btn-block">
                                             <i class="fa fa-dot-circle-o"></i>
@@ -326,7 +326,7 @@
                                         </table>
                                     </form>
                                     <form name="selectOrder" method="post" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="loadOrderList" />
+                                        <input type="hidden" name="command" value="loadOrderListCommand" />
                                         <fmt:message key="admin.button.selectOrder" var="selectOrderButtonValue" />
                                         <button type="submit" class="btn btn-outline btn-info btn-lg btn-block">
                                             <c:if test="${empty requestScope.orderID}">
@@ -367,7 +367,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="confirmOrderButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="confirmOrder" />
+                                                        <input type="hidden" name="command" value="confirmOrderCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <button type="submit" class="btn btn-outline btn-success btn-block">
                                                             <i class="fa fa-check-square-o"></i>
@@ -384,7 +384,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="rejectOrderButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="rejectOrder" />
+                                                        <input type="hidden" name="command" value="rejectOrderCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-outline btn-warning btn-block">
@@ -407,7 +407,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="giveVehicleButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="giveVehicle" />
+                                                        <input type="hidden" name="command" value="giveVehicleCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <button type="submit" class="btn btn-outline btn-info btn-block">
                                                             <i class="fa fa-level-up"></i>
@@ -424,7 +424,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="returnVehicleButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="returnVehicle" />
+                                                        <input type="hidden" name="command" value="returnVehicleCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <button type="submit" class="btn btn-outline btn-info btn-block">
                                                             <i class="fa fa-level-down"></i>
@@ -441,7 +441,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="returnDamagedVehicleButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="returnDamagedVehicle" />
+                                                        <input type="hidden" name="command" value="returnDamagedVehicleCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-outline btn-warning btn-block">
@@ -470,7 +470,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="confirmPaymentButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="confirmPayment" />
+                                                        <input type="hidden" name="command" value="confirmPaymentCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <button type="submit" class="btn btn-outline btn-success btn-block">
                                                             <i class="fa fa-money"></i>
@@ -487,7 +487,7 @@
                                                 </div>
                                                 <div class="panel-body">
                                                     <form name="resetOrderButton" method="post" action="CarRentalServlet">
-                                                        <input type="hidden" name="command" value="resetOrder" />
+                                                        <input type="hidden" name="command" value="resetOrderCommand" />
                                                         <input type="hidden" name="orderID" value="${orderID}" />
                                                         <button type="submit" class="btn btn-outline btn-danger btn-block">
                                                             <i class="fa fa-eraser"></i>

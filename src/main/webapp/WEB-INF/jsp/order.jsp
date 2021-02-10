@@ -100,7 +100,7 @@
                                 <li>
 
                                     <form name="logoutForm" method="POST" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="logout"/>
+                                        <input type="hidden" name="command" value="logOutCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
                                             <i class="fa fa-sign-out fa-fw"></i>
@@ -122,7 +122,7 @@
                             <c:if test="${!empty sessionScope.userName}">
                                 <li>
                                     <form name="makeOrderButton" method="post" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="makeOrderButton"/>
+                                        <input type="hidden" name="command" value="makeOrderButtonCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
                                             <i class="fa fa-shopping-cart fa-fw"></i>
@@ -133,7 +133,7 @@
                                 <c:if test="${sessionScope.userTypeID == 1}">
                                     <li>
                                         <form name="adminZoneButton" method="post" action="CarRentalServlet">
-                                            <input type="hidden" name="command" value="adminZoneButton"/>
+                                            <input type="hidden" name="command" value="adminZoneButtonCommand"/>
                                             <a href="" onclick="parentNode.submit();
                                                     return false;">
                                                 <i class="fa fa-wrench fa-fw"></i>
@@ -169,7 +169,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <form role="form" name="calculateCost" method="post" action="CarRentalServlet">
-                                            <input type="hidden" name="command" value="calculateCost"/>
+                                            <input type="hidden" name="command" value="calculateCostCommand"/>
                                             <h2><fmt:message key="order.label.selectVehicle" /></h2>
                                             <div class="form-group">
                                                 <div class="table-responsive">
@@ -265,7 +265,7 @@
                                     <div class="col-lg-6">
                                         <h2><fmt:message key="order.label.fillPassport" /></h2>
                                         <form role="form" name="orderForm" method="POST" action="CarRentalServlet">
-                                            <input type="hidden" name="command" value="createOrder"/>
+                                            <input type="hidden" name="command" value="createOrderCommand"/>
                                             <input type="hidden" name="vehicleID" value="${vehicleID}"/>
                                             <input type="hidden" name="pickUpDate" value="${pickUpDate}"/>
                                             <input type="hidden" name="dropOffDate" value="${dropOffDate}"/>

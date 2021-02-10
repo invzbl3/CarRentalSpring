@@ -103,7 +103,7 @@
                                 <li>
 
                                     <form name="logoutForm" method="POST" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="logout"/>
+                                        <input type="hidden" name="command" value="logOutCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
                                             <i class="fa fa-sign-out fa-fw"></i>
@@ -125,7 +125,7 @@
                             <c:if test="${!empty sessionScope.userName}">
                                 <li>
                                     <form name="makeOrderButton" method="post" action="CarRentalServlet">
-                                        <input type="hidden" name="command" value="makeOrderButton"/>
+                                        <input type="hidden" name="command" value="makeOrderButtonCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
                                             <i class="fa fa-shopping-cart fa-fw"></i>
@@ -136,7 +136,7 @@
                                 <c:if test="${sessionScope.userTypeID == 1}">
                                     <li>
                                         <form name="adminZoneButton" method="post" action="CarRentalServlet">
-                                            <input type="hidden" name="command" value="adminZoneButton"/>
+                                            <input type="hidden" name="command" value="adminZoneButtonCommand"/>
                                             <a href="" onclick="parentNode.submit();
                                                     return false;">
                                                 <i class="fa fa-wrench fa-fw"></i>
