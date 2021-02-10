@@ -52,7 +52,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.jsp">
+                    <a class="navbar-brand" href="index">
                         <fmt:message key="index.title" />
                     </a>
                 </div>
@@ -76,7 +76,7 @@
                         <ul class="dropdown-menu dropdown-user">
                             <c:if test="${empty sessionScope.userName}">
                                 <li>
-                                    <a href="login.jspx">
+                                    <a href="login">
                                         <i class="fa fa-sign-in fa-fw"></i>
                                         <fmt:message key="header.button.login" />
                                     </a>

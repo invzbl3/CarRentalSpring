@@ -4,7 +4,6 @@ import com.project.carrental.entity.Order;
 import com.project.carrental.repository.OrderRepository;
 import com.project.carrental.service.command.ICommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
  *
  * @see TagSupport
  */
-@Configurable
 public class LoadOrderListTag extends TagSupport {
 
     @Autowired
