@@ -38,7 +38,7 @@
                             </div>
                             <div class="panel-body">
                                 <form role="form" name="loginForm" method="POST" action="CarRentalServlet">
-                                    <input type="hidden" name="command" value="login"/>
+                                    <input type="hidden" name="command" value="logInCommand"/>
                                     <fieldset>
                                         <div class="form-group">
                                             <fmt:message key="login.label.login" var="loginValue" />
