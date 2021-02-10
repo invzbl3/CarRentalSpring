@@ -4,6 +4,7 @@ import com.project.carrental.entity.Vehicle;
 import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.service.command.ICommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import java.util.List;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -13,6 +14,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  *
  * @see TagSupport
  */
+@Configurable
 public class LoadVehicleListTag extends TagSupport {
 
     @Autowired
