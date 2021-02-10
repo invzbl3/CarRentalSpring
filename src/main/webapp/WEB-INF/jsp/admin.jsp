@@ -38,7 +38,7 @@
 
     <body>
 
-        <crtag:loadOrderList/>
+    <%--<crtag:loadOrderList/>--%>
 
         <div id="wrapper">
 
