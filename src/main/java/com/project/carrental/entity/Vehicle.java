@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
-@Entity
+@Entity(name = "vehicles")
 public class Vehicle {
 
     @Id

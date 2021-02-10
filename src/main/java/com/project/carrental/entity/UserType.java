@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import javax.persistence.*;
 
 @Data
-@Entity
+@Entity(name="usertypes")
 public class UserType {
 
     @Id

@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Data
-@Entity
+@Entity(name="passports")
 public class Passport {
 
     @Id
