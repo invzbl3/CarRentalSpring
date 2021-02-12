@@ -40,6 +40,7 @@
 
     <%--<crtag:loadOrderList/>--%>
     <table>
+        <%--@elvariable id="orderList" type="java.util.List<com.project.carrental.entity.Order>"--%>
         <c:forEach items="${orderList}" var="order">
             <tr>
                 <td><c:out value="${vehicle}" /></td>

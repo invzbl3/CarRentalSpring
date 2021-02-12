@@ -1,5 +1,7 @@
 package com.project.carrental.controller;
 
+import com.project.carrental.repository.OrderRepository;
+import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.service.factory.CommandFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,10 @@ import java.io.IOException;
 @Controller
 public class CarRentalController {
     @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    VehicleRepository vehicleRepository;
+    @Autowired
     private CommandFactory commandFactory;
 
     @GetMapping("/{view}")
@@ -23,6 +29,8 @@ public class CarRentalController {
     public String getCommand(@RequestParam("command") String command,
                              HttpServletRequest req, HttpServletResponse res,
                              HttpSession session) throws ServletException, IOException {
+        session.setAttribute("orderList", orderRepository.findAll());
+        session.setAttribute("vehicleList", vehicleRepository.findAll());
         return commandFactory.getCommand(command).execute(req, res, session);
     }
 }

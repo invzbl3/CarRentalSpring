@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
-<%@ taglib uri="/WEB-INF/tlds/carrentaltaglib.tld" prefix="crtag" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="/WEB-INF/tlds/carrentaltaglib.tld" prefix="crtag" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -40,6 +40,7 @@
 
         <%--<crtag:loadVehicleList/>--%>
         <table>
+            <%--@elvariable id="vehicleList" type="java.util.List<com.project.carrental.entity.Vehicle>"--%>
             <c:forEach items="${vehicleList}" var="vehicle">
                 <tr>
                     <td><c:out value="${make}" /></td>
