@@ -5,6 +5,7 @@ import com.project.carrental.exception.SessionTimeoutException;
 import com.project.carrental.util.CommandHelper;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +23,8 @@ public class LoadOrderListCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(LoadOrderListCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res,
-                          HttpSession session) throws ServletException, IOException {
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
         String page;
         try {
@@ -36,6 +37,6 @@ public class LoadOrderListCommand implements ICommand {
             page = ConfigManager.getInstance()
                     .getProperty(ConfigManager.ERROR_PAGE_PATH);
         }
-        return page;
+        return new ModelAndView(page);
     }
 }

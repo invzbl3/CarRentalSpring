@@ -1,5 +1,7 @@
 package com.project.carrental.service.command;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +57,7 @@ public interface ICommand {
     String REQ_PARAM_WHO_ISSUED = "whoIssued";
     String REQ_PARAM_WHEN_ISSUED = "whenIssued";
 
-    String execute(HttpServletRequest req, HttpServletResponse res,
-                   HttpSession session)
+    ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
+                         HttpSession session)
             throws ServletException, IOException;
 }

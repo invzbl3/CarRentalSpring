@@ -6,6 +6,8 @@ import com.project.carrental.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +31,8 @@ public class LogInCommand implements ICommand {
     static final int ACC_TYPE_CLIENT = 2;
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res,
-                          HttpSession session) throws ServletException, IOException {
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
 
         //get DAO and input data
@@ -77,7 +79,7 @@ public class LogInCommand implements ICommand {
                 page = null;
                 break;
         }
-        return page;
+        return new ModelAndView(page);
     }
 
     //auxiliary method for checking the login and password correspondence

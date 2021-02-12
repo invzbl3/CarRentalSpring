@@ -6,6 +6,8 @@ import com.project.carrental.service.factory.CommandFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,9 +28,9 @@ public class CarRentalController {
         return view;
     }
     @RequestMapping(value = { "/CarRentalServlet" }, method = { RequestMethod.GET, RequestMethod.POST })
-    public String getCommand(@RequestParam("command") String command,
-                             HttpServletRequest req, HttpServletResponse res,
-                             HttpSession session) throws ServletException, IOException {
+    public ModelAndView getCommand(@RequestParam("command") String command,
+                                   HttpServletRequest req, HttpServletResponse res,
+                                   HttpSession session) throws ServletException, IOException {
         session.setAttribute("orderList", orderRepository.findAll());
         session.setAttribute("vehicleList", vehicleRepository.findAll());
         return commandFactory.getCommand(command).execute(req, res, session);

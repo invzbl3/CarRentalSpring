@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +31,8 @@ public class GiveVehicleCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(GiveVehicleCommand.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res,
-                          HttpSession session) throws ServletException, IOException {
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
+                                HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
         String page;
         try {
@@ -67,6 +69,6 @@ public class GiveVehicleCommand implements ICommand {
             page = ConfigManager.getInstance()
                     .getProperty(ConfigManager.ERROR_PAGE_PATH);
         }
-        return page;
+        return new ModelAndView(page);
     }
 }

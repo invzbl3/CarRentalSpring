@@ -6,6 +6,8 @@ import com.project.carrental.repository.VehicleRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,13 +24,20 @@ import static com.project.carrental.service.command.LogInCommand.ACC_TYPE_CLIENT
 public class LogOutCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(LogOutCommand.class);
 
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    VehicleRepository vehicleRepository;
+
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res,
+    public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
                           HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
-        session.removeAttribute(SESS_PARAM_USER_NAME);
+        /*session.removeAttribute(SESS_PARAM_USER_NAME);
         session.removeAttribute(SESS_PARAM_USERTYPE_ID);
         return ConfigManager.getInstance()
-                .getProperty(ConfigManager.INDEX_PAGE_PATH);
+                .getProperty(ConfigManager.INDEX_PAGE_PATH);*/
+        return new ModelAndView(ConfigManager.getInstance()
+                .getProperty(ConfigManager.INDEX_PAGE_PATH));
     }
 }
