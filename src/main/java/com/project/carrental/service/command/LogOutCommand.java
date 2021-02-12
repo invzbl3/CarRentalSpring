@@ -33,12 +33,18 @@ public class LogOutCommand implements ICommand {
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
                           HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
+
         /*session.removeAttribute(SESS_PARAM_USER_NAME);
         session.removeAttribute(SESS_PARAM_USERTYPE_ID);
         return ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH);*/
-        session.removeAttribute(SESS_PARAM_USER_NAME);
-        session.removeAttribute(SESS_PARAM_USERTYPE_ID);
+        /*session.removeAttribute(SESS_PARAM_USER_NAME);
+        session.removeAttribute(SESS_PARAM_USERTYPE_ID);*/
+
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("orderList", orderRepository.findAll());
+        modelAndView.addObject("vehicleList", vehicleRepository.findAll());
+
         return new ModelAndView(ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH));
     }
