@@ -65,7 +65,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                     &#160;
-                                    <a href="index.jsp" class="alert-link">
+                                    <a href="index" class="alert-link">
                                         <fmt:message key="info.link.home" />
                                     </a>
                                 </p>
