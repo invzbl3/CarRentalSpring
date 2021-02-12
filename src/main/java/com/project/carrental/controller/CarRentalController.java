@@ -28,7 +28,7 @@ public class CarRentalController {
         return view;
     }
     @RequestMapping(value = { "/CarRentalServlet" }, method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView getCommand(@RequestParam("command") String command,
+    public ModelAndView getCommand(@RequestParam(required = false) String command,
                                    HttpServletRequest req, HttpServletResponse res,
                                    HttpSession session) throws ServletException, IOException {
         session.setAttribute("orderList", orderRepository.findAll());
