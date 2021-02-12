@@ -3,8 +3,11 @@ package com.project.carrental.repository;
 import com.project.carrental.entity.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
 import java.math.BigDecimal;
 
+@Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
     /*@Query("select v.dailyPrice from Vehicle v where v.vehicleID =: vehicleID")

@@ -39,6 +39,18 @@
     <body>
 
         <%--<crtag:loadVehicleList/>--%>
+        <table>
+            <c:forEach items="${vehicleList}" var="vehicle">
+                <tr>
+                    <td><c:out value="${make}" /></td>
+                    <td><c:out value="${model}" /></td>
+                    <td><c:out value="${autoGearbox}" /></td>
+                    <td><c:out value="${airConditioner}" /></td>
+                    <td><c:out value="${seats}" /></td>
+                    <td><c:out value="${dailyPrice}" /></td>
+                </tr>
+            </c:forEach>
+        </table>
 
         <div id="wrapper">
 

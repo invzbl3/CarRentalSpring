@@ -39,6 +39,27 @@
     <body>
 
     <%--<crtag:loadOrderList/>--%>
+    <table>
+        <c:forEach items="${orderList}" var="order">
+            <tr>
+                <td><c:out value="${vehicle}" /></td>
+                <td><c:out value="${user}" /></td>
+                <td><c:out value="${passport}" /></td>
+                <td><c:out value="${pickUpDate}" /></td>
+                <td><c:out value="${dropOffDate}" /></td>
+                <td><c:out value="${rentCost}" /></td>
+                <td><c:out value="${processed}" /></td>
+                <td><c:out value="${rejected}" /></td>
+                <td><c:out value="${rejectDesc}" /></td>
+                <td><c:out value="${picked}" /></td>
+                <td><c:out value="${returned}" /></td>
+                <td><c:out value="${damaged}" /></td>
+                <td><c:out value="${damageDesc}" /></td>
+                <td><c:out value="${damageCost}" /></td>
+                <td><c:out value="${paid}" /></td>
+            </tr>
+        </c:forEach>
+    </table>
 
         <div id="wrapper">
 
