@@ -41,10 +41,12 @@ public class LogOutCommand implements ICommand {
         /*session.removeAttribute(SESS_PARAM_USER_NAME);
         session.removeAttribute(SESS_PARAM_USERTYPE_ID);*/
 
+        session.removeAttribute(SESS_PARAM_USER_NAME);
+        session.removeAttribute(SESS_PARAM_USERTYPE_ID);
+        
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("orderList", orderRepository.findAll());
         modelAndView.addObject("vehicleList", vehicleRepository.findAll());
-
         return new ModelAndView(ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH));
     }
