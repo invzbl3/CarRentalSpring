@@ -1,13 +1,18 @@
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
+import com.project.carrental.repository.OrderRepository;
+import com.project.carrental.repository.VehicleRepository;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static com.project.carrental.service.command.LogInCommand.ACC_TYPE_CLIENT;
 
 /**
  * Class that represents command to log out.
@@ -21,7 +26,8 @@ public class LogOutCommand implements ICommand {
     public String execute(HttpServletRequest req, HttpServletResponse res,
                           HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
-        session.invalidate();
+        session.removeAttribute(SESS_PARAM_USER_NAME);
+        session.removeAttribute(SESS_PARAM_USERTYPE_ID);
         return ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH);
     }
