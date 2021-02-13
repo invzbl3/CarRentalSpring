@@ -42,22 +42,22 @@ public class Order {
     private BigDecimal rentCost;
 
     @Column(name = "processed", nullable = false)
-    private Boolean processed;
+    private Boolean processed = false;
 
     @Column(name = "rejected", nullable = false)
-    private Boolean rejected;
+    private Boolean rejected = false;
 
     @Column(name = "reject_desc")
     private String rejectDesc;
 
     @Column(name = "picked", nullable = false)
-    private Boolean picked;
+    private Boolean picked = false;
 
     @Column(name = "returned", nullable = false)
-    private Boolean returned;
+    private Boolean returned = false;
 
     @Column(name = "damaged", nullable = false)
-    private Boolean damaged;
+    private Boolean damaged = false;
 
     @Column(name = "damage_desc")
     private String damageDesc;
@@ -66,7 +66,7 @@ public class Order {
     private BigDecimal damageCost;
 
     @Column(name = "paid", nullable = false)
-    private Boolean paid;
+    private Boolean paid = false;
 
     public Order() {
     }
