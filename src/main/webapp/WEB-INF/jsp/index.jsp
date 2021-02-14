@@ -219,6 +219,18 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+
+                                    <%
+                                        out.println("<ul class=\"pagination\" th:if=\"${vehiclesPage.totalPages > 0}\">");
+                                        out.println("   <li th:each=\"pageNumber : ${numbers}\"");
+                                        out.println("   th:class=\"${pageNumber == vehiclesPage.number} ? active\">");
+                                        out.println("   >");
+                                        out.println("   ");
+                                        out.println("   <a th:href=\"@{'/pagination?page=' + ${pageNumber}}\"");
+                                        out.println("   th:text=\"${pageNumber + 1}\"></a>");
+                                        out.println("   </li>");
+                                        out.println("/ul>");
+                                    %>
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
