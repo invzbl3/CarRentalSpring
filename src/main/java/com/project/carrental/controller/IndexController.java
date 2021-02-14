@@ -24,21 +24,14 @@ public class IndexController {
 
 //    @GetMapping("/")
     @RequestMapping(value={"/","/index"}, method = RequestMethod.GET)
-    public ModelAndView index(Model model) {
+    public ModelAndView index(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
         /*model.addAttribute("orderList", orderRepository.findAll());
         model.addAttribute("vehicleList", vehicleRepository.findAll());
         return "index";*/
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("orderList", orderRepository.findAll());
         modelAndView.addObject("vehicleList", vehicleRepository.findAll());
-        return modelAndView;
-    }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String listVehicles(
-            Model model,
-            @RequestParam(value = "index", required = false, defaultValue = "0") Integer page
-    ) {
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "dailyPrice")));
         /*model.addAttribute("vehiclesPage", vehiclePage);
         model.addAttribute("vehicles", IntStream.range(0, vehiclePage.getTotalPages()).toArray());*/
@@ -47,6 +40,7 @@ public class IndexController {
         model.addAttribute("totalElements", vehiclePage.getTotalElements());
         model.addAttribute("size", vehiclePage.getSize());
         model.addAttribute("data",vehiclePage.getContent());
-        return "index";
+
+        return modelAndView;
     }
 }
