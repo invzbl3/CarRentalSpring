@@ -224,11 +224,15 @@
                                         <c:when test="${data.size() > 0 }">
                                             <c:forEach var="pageNumber" items="${data}">
                                                 <tr align="center">
-                                                    <td>${pageNumber.id}</td>
-                                                    <td>${pageNumber.name}</td>
-                                                    <td>${pageNumber.designation}</td>
-                                                    <td><a href="edit/${pageNumber.id}" class="btn btn-outline-info">Edit</a></td>
-                                                    <td><a href="delete/${pageNumber.id}" class="btn btn-outline-danger">Delete</a></td>
+                                                    <td>${pageNumber.vehicleID}</td>
+                                                    <td>${pageNumber.make}</td>
+                                                    <td>${pageNumber.model}</td>
+                                                    <td>${pageNumber.autoGearbox}</td>
+                                                    <td>${pageNumber.airConditioner}</td>
+                                                    <td>${pageNumber.seats}</td>
+                                                    <td>${pageNumber.dailyPrice}</td>
+                                                    <td><a href="edit/${pageNumber.vehicleID}" class="btn btn-outline-info">Edit</a></td>
+                                                    <td><a href="delete/${pageNumber.vehicleID}" class="btn btn-outline-danger">Delete</a></td>
                                                 </tr>
                                             </c:forEach>
                                         </c:when>
