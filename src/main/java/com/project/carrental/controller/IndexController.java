@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class IndexController {
 
@@ -26,14 +24,10 @@ public class IndexController {
 
 //    @GetMapping("/")
     @RequestMapping(value={"/","/index"}, method = RequestMethod.GET)
-    public ModelAndView index(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-                              HttpSession session) {
+    public ModelAndView index(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
         /*model.addAttribute("orderList", orderRepository.findAll());
         model.addAttribute("vehicleList", vehicleRepository.findAll());
         return "index";*/
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("orderList", orderRepository.findAll());
-        modelAndView.addObject("vehicleList", vehicleRepository.findAll());
 
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "dailyPrice")));
         /*model.addAttribute("vehiclesPage", vehiclePage);
@@ -43,6 +37,10 @@ public class IndexController {
         model.addAttribute("totalElements", vehiclePage.getTotalElements());
         model.addAttribute("size", vehiclePage.getSize());
         model.addAttribute("data",vehiclePage.getContent());
+
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("orderList", orderRepository.findAll());
+        modelAndView.addObject("vehicleList", vehicleRepository.findAll());
 
         return modelAndView;
     }

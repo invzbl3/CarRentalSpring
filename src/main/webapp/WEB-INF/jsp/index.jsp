@@ -251,7 +251,7 @@
 
                                     <c:if test="${data.size() > 0 }">
                                         <div class="panel-footer">
-                                            Showing ${number+1} of ${size+1} of ${totalElements}
+                                            Showing ${number+1} page of ${size+1} of ${totalElements} vehicles
                                             <ul class="pagination">
                                                 <c:forEach begin="0" end="${totalPages-1}" var="page">
                                                     <li class="page-item">
