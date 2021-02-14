@@ -9,13 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.stream.IntStream;
 
 @Controller
 public class IndexController {
@@ -37,10 +34,10 @@ public class IndexController {
         return modelAndView;
     }
 
-    @GetMapping("/index")
+    @RequestMapping(method = RequestMethod.GET)
     public String listVehicles(
             Model model,
-            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page
+            @RequestParam(value = "index", required = false, defaultValue = "0") Integer page
     ) {
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "Daily Price")));
         /*model.addAttribute("vehiclesPage", vehiclePage);
