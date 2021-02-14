@@ -39,7 +39,7 @@ public class IndexController {
             Model model,
             @RequestParam(value = "index", required = false, defaultValue = "0") Integer page
     ) {
-        Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "Daily Price")));
+        Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "dailyPrice")));
         /*model.addAttribute("vehiclesPage", vehiclePage);
         model.addAttribute("vehicles", IntStream.range(0, vehiclePage.getTotalPages()).toArray());*/
         model.addAttribute("number", vehiclePage.getNumber());
