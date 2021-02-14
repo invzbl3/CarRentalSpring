@@ -37,15 +37,19 @@ public class IndexController {
         return modelAndView;
     }
 
-    @GetMapping("/pagination")
+    @GetMapping("/index")
     public String listVehicles(
             Model model,
             @RequestParam(value = "page", required = false, defaultValue = "0") Integer page
     ) {
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "Daily Price")));
-        model.addAttribute("vehiclesPage", vehiclePage);
-        model.addAttribute("vehicles", IntStream.range(0, vehiclePage.getTotalPages()).toArray());
-
+        /*model.addAttribute("vehiclesPage", vehiclePage);
+        model.addAttribute("vehicles", IntStream.range(0, vehiclePage.getTotalPages()).toArray());*/
+        model.addAttribute("number", vehiclePage.getNumber());
+        model.addAttribute("totalPages", vehiclePage.getTotalPages());
+        model.addAttribute("totalElements", vehiclePage.getTotalElements());
+        model.addAttribute("size", vehiclePage.getSize());
+        model.addAttribute("data",vehiclePage.getContent());
         return "index";
     }
 }
