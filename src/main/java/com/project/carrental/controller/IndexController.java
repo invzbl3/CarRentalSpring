@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class IndexController {
 
@@ -24,7 +26,8 @@ public class IndexController {
 
 //    @GetMapping("/")
     @RequestMapping(value={"/","/index"}, method = RequestMethod.GET)
-    public ModelAndView index(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
+    public ModelAndView index(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+                              HttpSession session) {
         /*model.addAttribute("orderList", orderRepository.findAll());
         model.addAttribute("vehicleList", vehicleRepository.findAll());
         return "index";*/
