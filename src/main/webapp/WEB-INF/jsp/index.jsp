@@ -193,7 +193,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${vehicleList}" var="vehicle">
+                                            <%--<c:forEach items="${vehicleList}" var="vehicle">
                                                 <tr>
                                                     <td><c:out value="${vehicle.make}" /></td>
                                                     <td><c:out value="${vehicle.model}" /></td>
@@ -216,38 +216,51 @@
                                                     <td><c:out value="${vehicle.seats}" /></td>
                                                     <td><c:out value="${vehicle.dailyPrice}" /></td>
                                                 </tr>
-                                            </c:forEach>
-
-                                            <c:if test="${data.size() > 0 }">
-                                                <div class="panel-footer">
-                                                    Showing ${number+1} of ${size+1} of ${totalElements}
-                                                    <ul class="pagination">
-                                                        <c:forEach begin="0" end="${totalPages-1}" var="page">
-                                                            <li class="page-item">
-                                                                <a href="index?page=${page}&size=${size}" class="page-link">${page+1}</a>
-                                                            </li>
-                                                        </c:forEach>
-                                                    </ul>
-                                                </div>
-                                            </c:if>
+                                            </c:forEach>--%>
 
                                             <c:choose>
                                                 <c:when test="${data.size() > 0 }">
                                                     <c:forEach var="pageNumber" items="${data}">
-                                                        <tr align="center">
-                                                            <td>${pageNumber.vehicleID}</td>
-                                                            <td>${pageNumber.make}</td>
-                                                            <td>${pageNumber.model}</td>
-                                                            <td>${pageNumber.autoGearbox}</td>
-                                                            <td>${pageNumber.airConditioner}</td>
-                                                            <td>${pageNumber.seats}</td>
-                                                            <td>${pageNumber.dailyPrice}</td>
+                                                        <tr align="left">
+                                                            <td><c:out value="${pageNumber.make}" /></td>
+                                                            <td><c:out value="${pageNumber.model}" /></td>
+                                                            <td>
+                                                                <c:if test="${pageNumber.autoGearbox}">
+                                                                    <input type="checkbox" name="autoGearbox" disabled="" checked="" />
+                                                                </c:if>
+                                                                <c:if test="${not pageNumber.autoGearbox}">
+                                                                    <input type="checkbox" name="autoGearbox" disabled="" />
+                                                                </c:if>
+                                                            </td>
+                                                            <td>
+                                                                <c:if test="${pageNumber.airConditioner}">
+                                                                    <input type="checkbox" name="airConditioner" disabled="" checked="" />
+                                                                </c:if>
+                                                                <c:if test="${not pageNumber.airConditioner}">
+                                                                    <input type="checkbox" name="airConditioner" disabled="" />
+                                                                </c:if>
+                                                            </td>
+                                                            <td><c:out value="${pageNumber.seats}" /></td>
+                                                            <td><c:out value="${pageNumber.dailyPrice}" /></td>
                                                         </tr>
                                                     </c:forEach>
                                                 </c:when>
                                             </c:choose>
                                         </tbody>
                                     </table>
+
+                                    <c:if test="${data.size() > 0 }">
+                                        <div class="panel-footer">
+                                            Showing ${number+1} of ${size+1} of ${totalElements}
+                                            <ul class="pagination">
+                                                <c:forEach begin="0" end="${totalPages-1}" var="page">
+                                                    <li class="page-item">
+                                                        <a href="index?page=${page}&size=${size}" class="page-link">${page+1}</a>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+                                    </c:if>
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
