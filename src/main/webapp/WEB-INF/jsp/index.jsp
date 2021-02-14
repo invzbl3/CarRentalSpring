@@ -218,24 +218,6 @@
                                                 </tr>
                                             </c:forEach>
 
-                                            <c:choose>
-                                                <c:when test="${data.size() > 0 }">
-                                                    <c:forEach var="pageNumber" items="${data}">
-                                                        <tr align="center">
-                                                            <td>${pageNumber.vehicleID}</td>
-                                                            <td>${pageNumber.make}</td>
-                                                            <td>${pageNumber.model}</td>
-                                                            <td>${pageNumber.autoGearbox}</td>
-                                                            <td>${pageNumber.airConditioner}</td>
-                                                            <td>${pageNumber.seats}</td>
-                                                            <td>${pageNumber.dailyPrice}</td>
-                                                            <td><a href="edit/${pageNumber.vehicleID}" class="btn btn-outline-info">Edit</a></td>
-                                                            <td><a href="delete/${pageNumber.vehicleID}" class="btn btn-outline-danger">Delete</a></td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                </c:when>
-                                            </c:choose>
-
                                             <c:if test="${data.size() > 0 }">
                                                 <div class="panel-footer">
                                                     Showing ${number+1} of ${size+1} of ${totalElements}
@@ -248,6 +230,22 @@
                                                     </ul>
                                                 </div>
                                             </c:if>
+
+                                            <c:choose>
+                                                <c:when test="${data.size() > 0 }">
+                                                    <c:forEach var="pageNumber" items="${data}">
+                                                        <tr align="center">
+                                                            <td>${pageNumber.vehicleID}</td>
+                                                            <td>${pageNumber.make}</td>
+                                                            <td>${pageNumber.model}</td>
+                                                            <td>${pageNumber.autoGearbox}</td>
+                                                            <td>${pageNumber.airConditioner}</td>
+                                                            <td>${pageNumber.seats}</td>
+                                                            <td>${pageNumber.dailyPrice}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:when>
+                                            </c:choose>
                                         </tbody>
                                     </table>
                                 </div>
