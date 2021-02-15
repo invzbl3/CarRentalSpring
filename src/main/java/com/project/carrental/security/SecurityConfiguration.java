@@ -6,8 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -21,18 +20,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().
-                antMatchers("/index", "/").permitAll()
-                .antMatchers("/admin","/user").authenticated()
+        http.csrf().disable().authorizeRequests().
+                 antMatchers("/index", "/").permitAll()
+                .antMatchers("/admin","/CarRentalServlet").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.jspx")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/index.jsp", true);
+                .loginPage("/login").failureUrl("/error")
+                .defaultSuccessUrl("/index", true)
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .and()
+                .httpBasic();
     }
 
-    /*@Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }*/
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

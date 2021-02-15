@@ -1,3 +1,21 @@
 #wrapper {
     background-color: #d9edf7;
 }
+
+.panel-footer {
+    max-height: 70px;
+    border-top: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    text-align: right;
+    /*text-indent: 50px;*/
+}
+
+.pagination {
+    display: unset;
+    padding-left: 1px;
+}
+
+.pagination>li>a, .pagination>li>span {
+    padding: 0 12px;
+}
