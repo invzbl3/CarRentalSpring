@@ -10,7 +10,7 @@ insert into UserTypes (usertype) values
 /*==============================================================*/
 insert into Users (usertype_id, login, password) values
     ('1', 'root',  'root'),
-    ('2', 'user', 'user'),
+    ('2', 'user', '$2y$12$ngSW.nokDsTn0bEu9tHQ0ebPNBg7zs2/Dk1nv/QNwyjoy/GtcUiP6'),
     ('2', 'petrov', 'petrovpass'),
     ('2', 'smith',  'smithpass');
 
