@@ -17,7 +17,7 @@ class UserDetailsServiceImp implements UserDetailsService {
     private UserRepository repo;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository repo) {
+    public UserDetailsServiceImp(UserRepository repo) {
         this.repo = repo;
     }
 
