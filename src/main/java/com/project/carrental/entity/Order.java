@@ -6,8 +6,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Data
-@RequiredArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Entity(name="orders")
 public class Order {

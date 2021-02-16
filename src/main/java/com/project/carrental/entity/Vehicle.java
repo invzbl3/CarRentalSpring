@@ -6,8 +6,9 @@ import java.math.BigDecimal;
 
 @Data
 @ToString
-@RequiredArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "vehicles")
 public class Vehicle {
 

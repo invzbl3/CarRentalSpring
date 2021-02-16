@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Data
 @ToString
 @EqualsAndHashCode
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="usertypes")
 public class UserType {
 

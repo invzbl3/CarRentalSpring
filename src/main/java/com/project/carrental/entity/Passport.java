@@ -7,7 +7,8 @@ import java.sql.Date;
 @Data
 @EqualsAndHashCode
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="passports")
 public class Passport {
 
