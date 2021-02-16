@@ -23,10 +23,10 @@ class UserDetailsServiceImp implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
+             {
         User user = repo.findByLogin(username);
         if (user == null) {
-            return null;
+            throw new UsernameNotFoundException("Username was not found.");
         }
         List<GrantedAuthority> auth = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER");
