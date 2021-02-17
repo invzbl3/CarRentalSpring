@@ -38,11 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().
                  antMatchers("/index", "/").permitAll()
-                .antMatchers("/admin","/CarRentalServlet").authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").failureUrl("/error")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/CarRentalServlet", true)
                 .permitAll()
                 .and()
                 .logout()
