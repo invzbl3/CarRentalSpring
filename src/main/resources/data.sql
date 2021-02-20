@@ -2,8 +2,8 @@
 /* Table: UserTypes                                             */
 /*==============================================================*/
 insert into UserTypes (usertype) values
-    ('Administrator'),
-    ('Client');
+    ('ROLE_ADMIN'),
+    ('ROLE_CLIENT');
 
 /*==============================================================*/
 /* Table: Users                                                 */

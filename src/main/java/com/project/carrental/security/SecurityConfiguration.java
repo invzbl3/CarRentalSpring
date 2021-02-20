@@ -36,12 +36,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().
-                 antMatchers("/index", "/").permitAll()
-                .anyRequest().authenticated()
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/index", "/").permitAll()
+                .antMatchers("/order").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login").failureUrl("/error")
+                //.usernameParameter("username")
+                .loginPage("/login").failureUrl("/error").usernameParameter("username")
                 .defaultSuccessUrl("/CarRentalServlet", true)
                 .permitAll()
                 .and()
@@ -50,6 +51,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
     }
+
+    /*@Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/index", "/")
+                .permitAll()
+                .antMatchers("/**")
+                .hasAnyRole("ADMIN", "USER")
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/CarRentalServlet")
+                .failureUrl("/login?error=true")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login?logout=true")
+                .invalidateHttpSession(true)
+                .permitAll()
+                .and()
+                .csrf()
+                .disable();
+    }
+*/
+
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

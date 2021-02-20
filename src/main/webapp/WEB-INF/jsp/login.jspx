@@ -37,12 +37,12 @@
                                 <h3 class="panel-title"><fmt:message key="login.paneltitle" /></h3>
                             </div>
                             <div class="panel-body">
-                                <form role="form" name="loginForm" method="POST" action="${pageContext.request.contextPath}/login">
+                                <form role="form" name="loginForm" method="POST" action="${pageContext.request.contextPath}/CarRentalServlet">
                                     <input type="hidden" name="command" value="logInCommand"/>
                                     <fieldset>
                                         <div class="form-group">
                                             <fmt:message key="login.label.login" var="loginValue" />
-                                            <input class="form-control" placeholder="${loginValue}" name="username" type="text" autofocus=""/>
+                                            <input class="form-control" placeholder="${loginValue}" name="login" type="text" autofocus=""/>
                                         </div>
                                         <div class="form-group">
                                             <fmt:message key="login.label.password" var="passwordValue" />

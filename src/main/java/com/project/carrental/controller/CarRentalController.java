@@ -4,7 +4,6 @@ import com.project.carrental.entity.Vehicle;
 import com.project.carrental.repository.OrderRepository;
 import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.service.factory.CommandFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,12 +19,15 @@ import java.io.IOException;
 
 @Controller
 public class CarRentalController {
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    VehicleRepository vehicleRepository;
-    @Autowired
-    private CommandFactory commandFactory;
+    final OrderRepository orderRepository;
+    final VehicleRepository vehicleRepository;
+    private final CommandFactory commandFactory;
+
+    public CarRentalController(OrderRepository orderRepository, VehicleRepository vehicleRepository, CommandFactory commandFactory) {
+        this.orderRepository = orderRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.commandFactory = commandFactory;
+    }
 
     @GetMapping("/{view}")
     public String viewMapping(@PathVariable String view) {
