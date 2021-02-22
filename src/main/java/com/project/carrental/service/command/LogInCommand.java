@@ -1,3 +1,4 @@
+/*
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
@@ -14,10 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+*/
 /**
  * Class that represents command to log in.
  *
- */
+ *//*
+
 @Service
 public class LogInCommand implements ICommand {
 
@@ -94,4 +97,4 @@ public class LogInCommand implements ICommand {
             return user.getUserTypeID();
         }
     }
-}
+}*/

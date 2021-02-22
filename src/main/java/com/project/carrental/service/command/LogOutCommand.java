@@ -1,3 +1,4 @@
+/*
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
@@ -16,10 +17,12 @@ import java.io.IOException;
 
 import static com.project.carrental.service.command.LogInCommand.ACC_TYPE_CLIENT;
 
+*/
 /**
  * Class that represents command to log out.
  *
- */
+ *//*
+
 @Service
 public class LogOutCommand implements ICommand {
     public static final Logger LOGGER = Logger.getLogger(LogOutCommand.class);
@@ -34,12 +37,16 @@ public class LogOutCommand implements ICommand {
                           HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
 
-        /*session.removeAttribute(SESS_PARAM_USER_NAME);
+        */
+/*session.removeAttribute(SESS_PARAM_USER_NAME);
         session.removeAttribute(SESS_PARAM_USERTYPE_ID);
         return ConfigManager.getInstance()
-                .getProperty(ConfigManager.INDEX_PAGE_PATH);*/
-        /*session.removeAttribute(SESS_PARAM_USER_NAME);
-        session.removeAttribute(SESS_PARAM_USERTYPE_ID);*/
+                .getProperty(ConfigManager.INDEX_PAGE_PATH);*//*
+
+        */
+/*session.removeAttribute(SESS_PARAM_USER_NAME);
+        session.removeAttribute(SESS_PARAM_USERTYPE_ID);*//*
+
 
         session.removeAttribute(SESS_PARAM_USER_NAME);
         session.removeAttribute(SESS_PARAM_USERTYPE_ID);
@@ -50,4 +57,4 @@ public class LogOutCommand implements ICommand {
         return new ModelAndView(ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH));
     }
-}
+}*/

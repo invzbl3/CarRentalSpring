@@ -1,3 +1,4 @@
+/*
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
@@ -15,10 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+*/
 /**
  * Class that represents command to register new user.
  *
- */
+ *//*
+
 @Service
 public class RegisterCommand implements ICommand {
     @Autowired
@@ -45,10 +48,12 @@ public class RegisterCommand implements ICommand {
                     user.setLogin(login);
                     user.setPassword(password);
 
-                    /*int insertUserCode = userDAO.insert(user);
+                    */
+/*int insertUserCode = userDAO.insert(user);
                     if (insertUserCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
                         throw new IllegalArgumentException("Registration failed. Entry was not created");
-                    }*/
+                    }*//*
+
 
                     try {
                         userRepository.save(user);
@@ -83,4 +88,4 @@ public class RegisterCommand implements ICommand {
         }
         return new ModelAndView(page);
     }
-}
+}*/
