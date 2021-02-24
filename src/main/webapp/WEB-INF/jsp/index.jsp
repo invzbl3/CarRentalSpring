@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="/WEB-INF/tlds/carrentaltaglib.tld" prefix="crtag" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -86,7 +87,8 @@
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <c:if test="${empty sessionScope.userName}">
+                            <sec:authorize access="!isAuthenticated()">
+                            <%--<c:if test="${empty sessionScope.userName}">--%>
                                 <li>
                                     <a href="login">
                                         <i class="fa fa-sign-in fa-fw"></i>
@@ -100,8 +102,10 @@
                                         <fmt:message key="header.button.registration" />
                                     </a>
                                 </li>
-                            </c:if>
-                            <c:if test="${!empty sessionScope.userName}">
+                            <%--</c:if>--%>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                            <%--<c:if test="${!empty sessionScope.userName}">--%>
                                 <li>
                                     <a href="#">
                                         <div>
@@ -122,7 +126,8 @@
                                         </a>
                                     </form>
                                 </li>
-                            </c:if>
+                            <%--</c:if>--%>
+                            </sec:authorize>
                         </ul>
                         <!-- /.dropdown-user -->
                     </li>
@@ -133,7 +138,8 @@
                 <div class="navbar-default navbar-static-side" role="navigation">
                     <div class="sidebar-collapse">
                         <ul class="nav" id="side-menu">
-                            <c:if test="${!empty sessionScope.userName}">
+                            <sec:authorize access="isAuthenticated()">
+                            <%--<c:if test="${!empty sessionScope.userName}">--%>
                                 <li>
                                     <form name="makeOrderButton" method="post" action="CarRentalServlet">
                                         <input type="hidden" name="command" value="makeOrderButtonCommand"/>
@@ -144,7 +150,8 @@
                                         </a>
                                     </form>
                                 </li>
-                                <c:if test="${sessionScope.userTypeID == 1}">
+                                <sec:authorize access="hasRole('ADMIN')">
+                                <%--<c:if test="${sessionScope.userTypeID == 1}">--%>
                                     <li>
                                         <form name="adminZoneButton" method="post" action="CarRentalServlet">
                                             <input type="hidden" name="command" value="adminZoneButtonCommand"/>
@@ -155,8 +162,10 @@
                                             </a>
                                         </form>
                                     </li>
-                                </c:if>
-                            </c:if>
+                                </sec:authorize>
+                            </sec:authorize>
+                                <%--</c:if>--%>
+                            <%--</c:if>--%>
                         </ul>
                         <!-- /#side-menu -->
                     </div>
