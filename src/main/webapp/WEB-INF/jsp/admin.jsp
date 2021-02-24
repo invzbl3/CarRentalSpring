@@ -118,7 +118,8 @@
                                     <a href="#">
                                         <div>
                                             <i class="fa fa-user fa-fw"></i>
-                                            <c:out value="${sessionScope.userName}"/>
+                                            <%--<c:out value="${sessionScope.userName}"/>--%>
+                                            <sec:authentication property="principal.username" />
                                         </div>
                                     </a>
                                 </li>
