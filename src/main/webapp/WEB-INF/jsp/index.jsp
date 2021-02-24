@@ -118,7 +118,7 @@
                                 <li class="divider"></li>
                                 <li>
 
-                                    <form name="logoutForm" method="POST" action="CarRentalServlet">
+                                    <form name="logoutForm" method="POST" action="${pageContext.request.contextPath}/logout">
                                         <input type="hidden" name="command" value="logOutCommand"/>
                                         <a href="" onclick="parentNode.submit();
                                                 return false;">
