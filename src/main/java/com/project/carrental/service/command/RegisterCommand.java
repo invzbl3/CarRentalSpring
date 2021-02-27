@@ -4,7 +4,6 @@ import com.project.carrental.config.ConfigManager;
 import com.project.carrental.entity.User;
 import com.project.carrental.repository.UserRepository;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
