@@ -12,8 +12,6 @@ import java.math.BigDecimal;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
-    /*@Query("select v.dailyPrice from Vehicle v where v.vehicleID =: vehicleID")
-    BigDecimal getDailyPriceByVehicleID(Integer vehicleID);*/
     @Query("select v from vehicles v where v.vehicleID =:id")
     Vehicle getDailyPriceByVehicleID(Integer vehicleID);
 

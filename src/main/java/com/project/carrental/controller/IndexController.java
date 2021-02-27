@@ -3,7 +3,6 @@ package com.project.carrental.controller;
 import com.project.carrental.entity.Vehicle;
 import com.project.carrental.repository.OrderRepository;
 import com.project.carrental.repository.VehicleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,21 +16,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    VehicleRepository vehicleRepository;
+    final OrderRepository orderRepository;
+    final VehicleRepository vehicleRepository;
 
-//    @GetMapping("/")
+    public IndexController(OrderRepository orderRepository, VehicleRepository vehicleRepository) {
+        this.orderRepository = orderRepository;
+        this.vehicleRepository = vehicleRepository;
+    }
+
     @RequestMapping(value={"/","/index"}, method = RequestMethod.GET)
     public ModelAndView index(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
-        /*model.addAttribute("orderList", orderRepository.findAll());
-        model.addAttribute("vehicleList", vehicleRepository.findAll());
-        return "index";*/
 
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "dailyPrice")));
-        /*model.addAttribute("vehiclesPage", vehiclePage);
-        model.addAttribute("vehicles", IntStream.range(0, vehiclePage.getTotalPages()).toArray());*/
         model.addAttribute("number", vehiclePage.getNumber());
         model.addAttribute("totalPages", vehiclePage.getTotalPages());
         model.addAttribute("totalElements", vehiclePage.getTotalElements());

@@ -19,9 +19,12 @@ import java.io.IOException;
 
 @Service
 public class ReturnVehicleCommand implements ICommand {
-    @Autowired
-    OrderRepository orderRepository;
+    final OrderRepository orderRepository;
     public static final Logger LOGGER = Logger.getLogger(ReturnVehicleCommand.class);
+
+    public ReturnVehicleCommand(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @Override
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
@@ -31,16 +34,9 @@ public class ReturnVehicleCommand implements ICommand {
         try {
             CommandHelper.validateSession(session);
 
-            //IOrderDao orderDAO = DaoFactory.getOrderDAO();
-            /*Order order = orderDAO.findByID(Integer.parseInt(req.
-                    getParameter(REQ_PARAM_ORDER_ID)));*/
             Order order = orderRepository.getOne(Integer.parseInt(req.
                     getParameter(REQ_PARAM_ORDER_ID)));
             order.setReturned(true);
-            /*int updateOrderCode = orderDAO.update(order);
-            if (updateOrderCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
-                throw new IllegalArgumentException("Order entry in DB was not updated");
-            }*/
 
             try {
                 orderRepository.save(order);

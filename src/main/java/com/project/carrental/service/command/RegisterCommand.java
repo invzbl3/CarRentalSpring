@@ -1,4 +1,3 @@
-/*
 package com.project.carrental.service.command;
 
 import com.project.carrental.config.ConfigManager;
@@ -7,6 +6,7 @@ import com.project.carrental.repository.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,18 +16,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-*/
 /**
  * Class that represents command to register new user.
- *//*
-
+ */
 
 @Service
 public class RegisterCommand implements ICommand {
-    @Autowired
-    UserRepository userRepository;
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    final UserRepository userRepository;
 
     public static final Logger LOGGER = Logger.getLogger(RegisterCommand.class);
+
+    public RegisterCommand(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
@@ -41,23 +46,12 @@ public class RegisterCommand implements ICommand {
         String page;
         try {
             if (password.equals(passwordConfirm)) {
-                //IUserDao userDAO = DaoFactory.getUserDAO();
-                //if (userDAO.findByLogin(login) == null) {
+
                 if (userRepository.findByLogin(login) == null) {
                     User user = new User();
                     user.setUserTypeID(LogInCommand.ACC_TYPE_CLIENT);
                     user.setLogin(login);
-                    user.setPassword(password);
-
-                    */
-/*
-                    int insertUserCode = userDAO.insert(user);
-                    if (insertUserCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
-                        throw new IllegalArgumentException("Registration failed. Entry was not created");
-                    }
-                    *//*
-
-
+                    user.setPassword(bCryptPasswordEncoder.encode(password));
 
                     try {
                         userRepository.save(user);
@@ -93,4 +87,3 @@ public class RegisterCommand implements ICommand {
         return new ModelAndView(page);
     }
 }
-*/

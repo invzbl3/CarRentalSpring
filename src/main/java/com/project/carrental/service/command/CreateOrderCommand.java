@@ -32,16 +32,19 @@ import java.sql.Timestamp;
  */
 @Service
 public class CreateOrderCommand implements ICommand {
-    @Autowired
-    PassportRepository passportRepository;
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    VehicleRepository vehicleRepository;
-    @Autowired
-    UserRepository userRepository;
+    final PassportRepository passportRepository;
+    final OrderRepository orderRepository;
+    final VehicleRepository vehicleRepository;
+    final UserRepository userRepository;
 
     public static final Logger LOGGER = Logger.getLogger(CreateOrderCommand.class);
+
+    public CreateOrderCommand(PassportRepository passportRepository, OrderRepository orderRepository, VehicleRepository vehicleRepository, UserRepository userRepository) {
+        this.passportRepository = passportRepository;
+        this.orderRepository = orderRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
@@ -50,12 +53,6 @@ public class CreateOrderCommand implements ICommand {
         String page;
         try {
             CommandHelper.validateSession(session);
-
-            //get DAOs
-            /*IPassportDao passportDAO = DaoFactory.getPassportDAO();
-            IOrderDao orderDAO = DaoFactory.getOrderDAO();
-            IVehicleDao vehicleDAO = DaoFactory.getVehicleDAO();
-            IUserDao userDAO = DaoFactory.getUserDAO();*/
 
             //create and insert new passport
             Passport passport = new Passport();
@@ -67,12 +64,6 @@ public class CreateOrderCommand implements ICommand {
             passport.setPassportNumber(req.getParameter(REQ_PARAM_P_NUMBER));
             passport.setWhoIssued(req.getParameter(REQ_PARAM_WHO_ISSUED));
             passport.setWhenIssued(Date.valueOf(req.getParameter(REQ_PARAM_WHEN_ISSUED)));
-            /*int passportID = passportDAO.insert(passport);
-            if (passportID == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
-                throw new IllegalArgumentException("Passport entry in DB was not created");
-            } else {
-                passport.setPassportID(passportID);
-            }*/
 
             try {
                 passportRepository.save(passport);
@@ -83,11 +74,9 @@ public class CreateOrderCommand implements ICommand {
             //create and insert new order
             Order order = new Order();
             int vehicleID = Integer.parseInt(req.getParameter(REQ_PARAM_VEHICLE_ID));
-            //Vehicle vehicle = vehicleDAO.findByID(vehicleID);
             Vehicle vehicle = vehicleRepository.getOne(vehicleID);
             order.setVehicle(vehicle);
             int userID = (Integer) session.getAttribute(SESS_PARAM_USER_ID);
-            //User user = userDAO.findByID(userID);
             User user = userRepository.getOne(userID);
             order.setUser(user);
             order.setPassport(passport);
@@ -99,10 +88,6 @@ public class CreateOrderCommand implements ICommand {
                             .getParameter(REQ_PARAM_DROP_OFF_DATE))));
             order.setRentCost(BigDecimal.valueOf((Double.parseDouble(req.
                     getParameter(REQ_PARAM_RENT_COST)))));
-            /*int insertOrderCode = orderDAO.insert(order);
-            if (insertOrderCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
-                throw new IllegalArgumentException("Order entry in DB was not created");
-            }*/
 
             try {
                 orderRepository.save(order);

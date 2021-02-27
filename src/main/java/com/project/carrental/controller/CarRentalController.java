@@ -45,8 +45,11 @@ public class CarRentalController {
     @RequestParam(value = "page", required = false, defaultValue = "0") Integer page
     ) throws ServletException, IOException {
 
-        String login = principal.getName();
-        User user = userRepository.findByLogin(login);
+        if (principal != null) {
+            String login = principal.getName();
+            User user = userRepository.findByLogin(login);
+            session.setAttribute("userID", user.getUserID());
+        }
 
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "dailyPrice")));
 
@@ -55,7 +58,6 @@ public class CarRentalController {
         session.setAttribute("totalElements", vehiclePage.getTotalElements());
         session.setAttribute("size", vehiclePage.getSize());
         session.setAttribute("data",vehiclePage.getContent());
-        session.setAttribute("userID", user.getUserID());
 
         session.setAttribute("orderList", orderRepository.findAll());
         session.setAttribute("vehicleList", vehicleRepository.findAll());

@@ -2,9 +2,7 @@ package com.project.carrental.util;
 
 import com.project.carrental.exception.SessionTimeoutException;
 import org.apache.log4j.Logger;
-
 import javax.servlet.http.HttpSession;
-
 import static com.project.carrental.service.command.ICommand.SESS_PARAM_USER_NAME;
 
 /**

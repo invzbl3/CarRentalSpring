@@ -25,8 +25,6 @@ public class NoCommand implements ICommand {
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
                                 HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
-        /*return ConfigManager.getInstance()
-                .getProperty(ConfigManager.INDEX_PAGE_PATH);*/
         return new ModelAndView(ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH));
     }

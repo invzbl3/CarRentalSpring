@@ -18,17 +18,14 @@ public class Order {
     private Integer orderID;
 
     @OneToOne
-    //@Column(name = "vehicle_id", nullable = false)
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
     @OneToOne
-    //@Column(name = "user_id", nullable = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @OneToOne
-    //@Column(name = "passport_id", nullable = false)
     @JoinColumn(name = "passport_id", nullable = false)
     private Passport passport;
 
