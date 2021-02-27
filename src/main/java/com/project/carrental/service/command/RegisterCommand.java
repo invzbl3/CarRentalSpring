@@ -19,8 +19,8 @@ import java.io.IOException;
 */
 /**
  * Class that represents command to register new user.
- *
  *//*
+
 
 @Service
 public class RegisterCommand implements ICommand {
@@ -28,6 +28,7 @@ public class RegisterCommand implements ICommand {
     UserRepository userRepository;
 
     public static final Logger LOGGER = Logger.getLogger(RegisterCommand.class);
+
     @Override
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
                                 HttpSession session) throws ServletException, IOException {
@@ -42,17 +43,20 @@ public class RegisterCommand implements ICommand {
             if (password.equals(passwordConfirm)) {
                 //IUserDao userDAO = DaoFactory.getUserDAO();
                 //if (userDAO.findByLogin(login) == null) {
-                if(userRepository.findByLogin(login) == null) {
+                if (userRepository.findByLogin(login) == null) {
                     User user = new User();
                     user.setUserTypeID(LogInCommand.ACC_TYPE_CLIENT);
                     user.setLogin(login);
                     user.setPassword(password);
 
                     */
-/*int insertUserCode = userDAO.insert(user);
+/*
+                    int insertUserCode = userDAO.insert(user);
                     if (insertUserCode == DaoHelper.EXECUTE_UPDATE_ERROR_CODE) {
                         throw new IllegalArgumentException("Registration failed. Entry was not created");
-                    }*//*
+                    }
+                    *//*
+
 
 
                     try {
@@ -88,4 +92,5 @@ public class RegisterCommand implements ICommand {
         }
         return new ModelAndView(page);
     }
-}*/
+}
+*/

@@ -20,8 +20,8 @@ import static com.project.carrental.service.command.LogInCommand.ACC_TYPE_CLIENT
 */
 /**
  * Class that represents command to log out.
- *
  *//*
+
 
 @Service
 public class LogOutCommand implements ICommand {
@@ -34,7 +34,7 @@ public class LogOutCommand implements ICommand {
 
     @Override
     public ModelAndView execute(HttpServletRequest req, HttpServletResponse res,
-                          HttpSession session) throws ServletException, IOException {
+                                HttpSession session) throws ServletException, IOException {
         LOGGER.info("Command called: " + this.getClass().getSimpleName());
 
         */
@@ -43,18 +43,19 @@ public class LogOutCommand implements ICommand {
         return ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH);*//*
 
-        */
-/*session.removeAttribute(SESS_PARAM_USER_NAME);
-        session.removeAttribute(SESS_PARAM_USERTYPE_ID);*//*
+
+        session.removeAttribute(SESS_PARAM_USER_NAME);
+        session.removeAttribute(SESS_PARAM_USERTYPE_ID);
 
 
         session.removeAttribute(SESS_PARAM_USER_NAME);
         session.removeAttribute(SESS_PARAM_USERTYPE_ID);
-        
+
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("orderList", orderRepository.findAll());
         modelAndView.addObject("vehicleList", vehicleRepository.findAll());
         return new ModelAndView(ConfigManager.getInstance()
                 .getProperty(ConfigManager.INDEX_PAGE_PATH));
     }
-}*/
+}
+*/

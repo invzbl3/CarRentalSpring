@@ -1,7 +1,9 @@
 package com.project.carrental.controller;
 
+import com.project.carrental.entity.User;
 import com.project.carrental.entity.Vehicle;
 import com.project.carrental.repository.OrderRepository;
+import com.project.carrental.repository.UserRepository;
 import com.project.carrental.repository.VehicleRepository;
 import com.project.carrental.service.factory.CommandFactory;
 import org.springframework.data.domain.Page;
@@ -16,14 +18,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 public class CarRentalController {
+    private final UserRepository userRepository;
     final OrderRepository orderRepository;
     final VehicleRepository vehicleRepository;
     private final CommandFactory commandFactory;
 
-    public CarRentalController(OrderRepository orderRepository, VehicleRepository vehicleRepository, CommandFactory commandFactory) {
+    public CarRentalController(UserRepository userRepository, OrderRepository orderRepository, VehicleRepository vehicleRepository, CommandFactory commandFactory) {
+        this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.vehicleRepository = vehicleRepository;
         this.commandFactory = commandFactory;
@@ -36,9 +41,12 @@ public class CarRentalController {
     @RequestMapping(value = { "/CarRentalServlet" }, method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView getCommand(@RequestParam(required = false) String command,
                                    HttpServletRequest req, HttpServletResponse res,
-                                   HttpSession session,
+                                   HttpSession session, Principal principal,
     @RequestParam(value = "page", required = false, defaultValue = "0") Integer page
     ) throws ServletException, IOException {
+
+        String login = principal.getName();
+        User user = userRepository.findByLogin(login);
 
         Page<Vehicle> vehiclePage = vehicleRepository.findAll(new PageRequest(page, 2, new Sort(Sort.Direction.DESC, "dailyPrice")));
 
@@ -47,6 +55,7 @@ public class CarRentalController {
         session.setAttribute("totalElements", vehiclePage.getTotalElements());
         session.setAttribute("size", vehiclePage.getSize());
         session.setAttribute("data",vehiclePage.getContent());
+        session.setAttribute("userID", user.getUserID());
 
         session.setAttribute("orderList", orderRepository.findAll());
         session.setAttribute("vehicleList", vehicleRepository.findAll());

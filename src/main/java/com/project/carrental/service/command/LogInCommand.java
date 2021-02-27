@@ -21,6 +21,7 @@ import java.io.IOException;
  *
  *//*
 
+
 @Service
 public class LogInCommand implements ICommand {
 
@@ -97,4 +98,5 @@ public class LogInCommand implements ICommand {
             return user.getUserTypeID();
         }
     }
-}*/
+}
+*/

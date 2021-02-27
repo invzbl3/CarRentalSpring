@@ -1,5 +1,6 @@
 package com.project.carrental.security;
 
+import com.project.carrental.listener.AuthenticationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,9 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
+    private final AuthenticationListener authenticationListener;
 
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
+    public SecurityConfiguration(UserDetailsService userDetailsService, AuthenticationListener authenticationListener) {
         this.userDetailsService = userDetailsService;
+        this.authenticationListener = authenticationListener;
     }
 
     @Bean
@@ -41,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 /*.anyRequest().authenticated()*/
                 .and()
                 .formLogin()
+                //.successHandler(authenticationListener)
                 //.usernameParameter("username")
                 .loginPage("/login").failureUrl("/error").usernameParameter("username")
                 .defaultSuccessUrl("/CarRentalServlet", true)
